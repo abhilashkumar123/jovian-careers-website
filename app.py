@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify
 
 app = Flask(__name__)
 
@@ -28,6 +28,16 @@ JOBS = [{
 @app.route("/")
 def hello_world():
   return render_template('home.html', jobs=JOBS, Company_Name='Jovian Careers')
+
+
+#Get data in JSOn format and display in UI
+#https://jovian-careers-website.abhicvraman.repl.co/jobs
+#:- Will display data in jSON format.
+
+
+@app.route("/api/jobs")
+def list_jobs():
+  return jsonify(JOBS)
 
 
 if __name__ == "__main__":
